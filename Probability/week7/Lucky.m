@@ -1,0 +1,10 @@
+clc;clear;
+func1 = @(x) x.*(x+0.675);
+func2 = @(x) x.*(1-(4*(x-0.25).^2-x+0.375));
+func3 = @(x) x.*(-x+1.375);
+func4 = @(x) x.*(1-(-4*(x-0.75).^2+x-0.375));
+q1 = integral(func1,0,0.25);
+q2 = integral(func2,0.25,0.5);
+q3 = integral(func3,0.5,0.75);
+q4 = integral(func4,0.75,1);
+q = q1+q2+q3+q4;

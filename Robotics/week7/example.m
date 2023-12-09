@@ -1,0 +1,17 @@
+clc;clear;
+theta1 = 21.8;theta2 = -52.2;theta3 = 2.5;
+R01 = R_matrix(theta1,0);
+R12 = R_matrix(theta2,-90);
+R23 = R_matrix(theta3,0);
+R03 = R01*R12*R23;
+RX = [1 0 0;0 0 1;0 -1 0];
+R06 = [0 0.5736 0.8192;0 -0.8192 0.5736;1 0 0];
+R36 = inv(R03*RX)*R06;
+beta1 = vpa(atan2(sqrt(R36(3,1)^2+R36(3,2)^2),R36(3,3))*180/pi);
+beta2 = -beta1;
+alpha1 = vpa(atan2(R36(2,3)/sind(beta1),R36(1,3)/sind(beta1))*180/pi)+180;
+alpha2 = vpa(atan2(R36(2,3)/sind(beta2),R36(1,3)/sind(beta2))*180/pi)+180;
+garmma1 = vpa(atan2(R36(3,2)/sind(beta1),-R36(3,1)/sind(beta1))*180/pi)+180;
+garmma2 = vpa(atan2(R36(3,2)/sind(beta2),-R36(3,1)/sind(beta2))*180/pi)+180;
+theta456 = Calculate_up_pi(beta1, beta2, alpha1, alpha2, garmma1, garmma2);
+theta456 = double(theta456);
