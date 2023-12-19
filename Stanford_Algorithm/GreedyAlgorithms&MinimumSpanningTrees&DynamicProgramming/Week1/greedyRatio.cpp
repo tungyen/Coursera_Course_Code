@@ -8,15 +8,6 @@
 #include <stdio.h>
 using namespace std;
 
-// This is the sorting rule of Q1 
-bool cmpDiff(const pair<int, int> &p1, const pair<int, int> &p2){
-	if(p1.first-p1.second==p2.first-p2.second){
-		return p1.first > p2.first;
-	}
-	return p1.first-p1.second > p2.first-p2.second;
-}
-
-// This is the sorting rule of Q2
 bool cmpRatio(const pair<int, int> &p1, const pair<int, int> &p2){
 
 	return ((double)p1.first/(double)p1.second)> ((double)p2.first/(double)p2.second);
@@ -40,7 +31,6 @@ int main(int argc, char** argv) {
 		lists.push_back({weight, length});
 	}
 	
-	//sort(lists.begin(), lists.end(), cmpDiff);
 	sort(lists.begin(), lists.end(), cmpRatio);
 	
 	int lengthSum = 0;
