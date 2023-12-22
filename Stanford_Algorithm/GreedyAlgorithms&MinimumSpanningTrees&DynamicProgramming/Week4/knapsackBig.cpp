@@ -59,3 +59,5 @@ int main(){
     int ans = kp.getOptimal();
     cout<<"The answer of Knapsack big is: "<<ans<<endl;
 }
+
+// The answer is 4243395
