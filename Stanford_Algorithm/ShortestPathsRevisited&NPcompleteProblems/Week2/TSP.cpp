@@ -33,6 +33,7 @@ public:
                 double xDiff = graph[i].first-graph[j].first;
                 double yDiff = graph[i].second-graph[j].second;
                 double d = sqrt(xDiff*xDiff + yDiff*yDiff);
+                dMax = max(dMax, d);
                 distance[i][j] = d;
                 distance[j][i] = d;
             }
@@ -45,15 +46,15 @@ public:
             return distance[source][0];
         }
 
-        double res = INT_MAX;
+        double res = dMax*cityNum;
 
-        for(int i = 0;i<cityNum;i++){
+        for(int i = 1;i<cityNum;i++){
             if(!(visited&(1<<i))){
                 double newRes = distance[source][i] + minimumCost(visited|(1<<i), i);
                 res = min(res, newRes);
             }
         }
-        cout<<"Current result is: "<<res<<endl;
+        //cout<<"Current result is: "<<res<<endl;
         return res;
     }
 
@@ -61,6 +62,7 @@ public:
 private:
     int cityNum;
     int M;
+    double dMax = 0;
     vector<pair<double, double>> graph;
     vector<vector<double>> distance;
 };
